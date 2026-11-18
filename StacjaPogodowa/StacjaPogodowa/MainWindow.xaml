@@ -1,0 +1,52 @@
+<Window x:Class="StacjaPogodowa.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Stacje pogodowe" Height="520" Width="760">
+    <DockPanel Margin="10">
+
+        <!-- Górny pasek: wczytaj / zapisz / filtr -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+            <Button Content="Wczytaj z pliku" Click="Load_Click" Padding="10,3" Margin="0,0,6,0"/>
+            <Button Content="Zapisz do pliku" Click="Save_Click" Padding="10,3" Margin="0,0,16,0"/>
+            <TextBlock Text="Stacja:" VerticalAlignment="Center" Margin="0,0,6,0"/>
+            <ComboBox x:Name="StationCombo" Width="160"
+                      SelectionChanged="StationCombo_SelectionChanged"/>
+        </StackPanel>
+
+        <!-- Dolny pasek: dodawanie pomiaru -->
+        <GroupBox DockPanel.Dock="Bottom" Header="Dodaj pomiar" Margin="0,8,0,0">
+            <StackPanel Orientation="Horizontal" Margin="6">
+                <TextBlock Text="Stacja" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <TextBox x:Name="TbStation" Width="80" Margin="0,0,10,0"/>
+                <TextBlock Text="Data" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <TextBox x:Name="TbDate" Width="90" Margin="0,0,10,0"/>
+                <TextBlock Text="Temp." VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <TextBox x:Name="TbTemp" Width="50" Margin="0,0,10,0"/>
+                <TextBlock Text="Wartość" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <TextBox x:Name="TbVal" Width="50" Margin="0,0,10,0"/>
+                <Button Content="Dodaj" Click="Add_Click" Padding="12,3"/>
+            </StackPanel>
+        </GroupBox>
+
+        <DataGrid x:Name="Grid" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsMax}" Value="True">
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsMin}" Value="True">
+                            <Setter Property="Background" Value="LightSkyBlue"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Stacja" Binding="{Binding Station}" Width="*"/>
+                <DataGridTextColumn Header="Data" Binding="{Binding Date, StringFormat=yyyy-MM-dd}" Width="*"/>
+                <DataGridTextColumn Header="Temperatura [°C]" Binding="{Binding Temperature}" Width="*"/>
+                <DataGridTextColumn Header="Wartość" Binding="{Binding Value}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
