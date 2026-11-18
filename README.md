@@ -35,51 +35,6 @@ STO2;2023-03-01;20.1;43;
 | Temperatura | liczba z kropką dziesiętną | `18.5` |
 | Wartość | liczba z kropką dziesiętną | `12.5` |
 
-## Wymagania
-
-- Windows
-- .NET 8 SDK (lub nowszy) z obsługą WPF
-- Visual Studio 2022 (opcjonalnie)
-
-## Uruchomienie
-
-1. Sklonuj repozytorium:
-
-   ```bash
-   git clone <adres-repozytorium>
-   cd StacjaPogodowa
-   ```
-
-2. Upewnij się, że plik `a.txt` znajduje się w folderze projektu.
-
-3. Uruchom aplikację:
-
-   ```bash
-   dotnet run
-   ```
-
-   Albo otwórz projekt w Visual Studio i naciśnij **F5**.
-
-### Ścieżka do pliku danych
-
-Ścieżka jest ustawiona w `MainWindow.xaml.cs`:
-
-```csharp
-private readonly string _path =
-    @"C:\Users\maxxi\Documents\StacjaPogodowa\a.txt";
-```
-
-Jeśli projekt leży w innym miejscu, zmień tę ścieżkę.
-
-## Obsługa
-
-| Element | Działanie |
-|---|---|
-| **Wczytaj z pliku** | Wczytuje pomiary z `a.txt` i odświeża tabelę |
-| **Zapisz do pliku** | Zapisuje aktualną listę pomiarów do `a.txt` |
-| **Stacja** (lista rozwijana) | Pokazuje pomiary tylko wybranej stacji lub wszystkich (`(wszystkie)`) |
-| **Dodaj pomiar** | Dodaje pomiar z pól tekstowych (stacja, data, temperatura, wartość) |
-
 Kolory wierszy w tabeli:
 
 - 🟩 zielony: maksymalna temperatura
@@ -96,9 +51,3 @@ StacjaPogodowa/
 ├── MainWindow.xaml.cs     # model Measurement, odczyt/zapis pliku, logika
 └── a.txt                  # plik z pomiarami
 ```
-
-## Technologie
-
-- C#
-- WPF (XAML)
-- .NET 8
